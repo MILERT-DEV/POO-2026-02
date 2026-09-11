@@ -49,13 +49,11 @@ public abstract class AbstractJpaRespository<T,ID>
     }
 
     @Override
-    public void deleteById(ID id) {
-        data.removeIf(entity->getId(entity).equals(id));
-
+    public void deleteById(ID id) {data.removeIf(entity->getId(entity).equals(id));
     }
 
     @Override
     public boolean existsById(ID id) {
-        return false;
+        return data.stream().anyMatch(entity->getId(entity).equals(id));
     }
 }
